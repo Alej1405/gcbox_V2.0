@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- sitemap version de informacion y enbudo de clientes -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" >
+     <url>
+          <loc>https://www.gc-box.com/</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/blog</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/blog/compras/tiendas</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/blog/compras/materia-prima</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/blog/compras/emprendimiento</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/blog/compras/compras-especificas</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/servicios</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/servicios/bodega-internacional</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/servicios/encomiendas</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+     <url>
+          <loc>https://www.gc-box.com/politicas-del-servicio-y-privacidad</loc>
+          <lastmod>2024-02-20</lastmod>
+     </url>
+</urlset>
