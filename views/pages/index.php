@@ -9,7 +9,7 @@
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
                     <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
-                    <li><a class="nav-link scrollto" href="/blog">Blog</a></li>
+                    <li><a class="nav-link scrollto" href="/blog">funciona</a></li>
                     <li><a class="nav-link scrollto" href="#nosotros">Nosotros</a></li>
                     <li><a class="nav-link scrollto" href="#servicios">Servicios</a></li>
                     <li><a class="nav-link scrollto" href="#contactos">Contactos</a></li>
