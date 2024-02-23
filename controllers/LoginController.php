@@ -208,7 +208,7 @@ class LoginController {
 
                 //redireccionar
                 if($resultado){
-                    header('Location: /login');
+                    header('Location: /');
                 }
             }
 
