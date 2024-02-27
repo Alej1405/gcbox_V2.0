@@ -32,7 +32,7 @@ class Cargas extends ActiveRecord{
         public function __construct($args =[])
         {
             //id se auto genera e incrementa  
-                $this -> id = $args['id'] ?? '';
+                $this -> id = $args['id'] ?? null;
             //informacion ingresada por el usuario
                 $this -> tracking = $args['tracking'] ?? 0;
                 $this -> origen = $args['origen'] ?? '';
@@ -51,7 +51,7 @@ class Cargas extends ActiveRecord{
             //informacion no manipulable, informacion de control
                 $this -> register_by = $args['register_by'] ?? '';
                 $this -> f_registro = $args['f_registro'] ?? '';
-                $this -> id_cliente = $args['id_cliente'] ?? 3;
+                $this -> id_cliente = $args['id_cliente'] ?? '';
         }
         //validar las cargas
         public function validarCarga(){
@@ -63,6 +63,9 @@ class Cargas extends ActiveRecord{
             }
             if(!$this->detalle){
                 self::$alertas['warning'] [] = "El detalle es obligatorio";
+            }
+            if(!$this->id_cliente){
+                self::$alertas['warning'] [] = "Agrega un cliente";
             }
             return self::$alertas;
         }

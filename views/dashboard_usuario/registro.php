@@ -28,7 +28,7 @@
                             <form class="row p-2 m-2 w-60" action=" " method="post">
                                 
                                 <h5 class="card-title text-center pb-0 fs-4">
-                                    Registrar Nueva compra.
+                                    Registrar Carga.
                                 </h5>
                                 <?php 
                                     include_once __DIR__ . "/../templates/alertas.php";
@@ -62,9 +62,23 @@
                                             autocomplete="off"
                                             type = "text"
                                             class="form-control" 
-                                            placeholder="Que es lo que compraste...?" 
+                                            placeholder="Que producto vamos a registrar...?" 
                                             id="detalle"
                                             name="detalle">
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <input
+                                            autocomplete="off"
+                                            type = "text"
+                                            class="form-control" 
+                                            placeholder="Cual es el valor de la compra...?" 
+                                            id="factura"
+                                            name="factura">
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <select class="form-select" name="id_cliente" id="id_cliente">
+                                            <option value="1">--- seleccionar un cliente ---</option>
+                                        </select>
                                     </div>
 
                                     <div class="col-12 mt-2">

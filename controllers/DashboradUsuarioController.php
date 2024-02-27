@@ -2,6 +2,7 @@
 
 namespace Controllers;
 
+use Classes\Email;
 use Model\Cargas;
 use Model\Cliente;
 use Model\Consig;
@@ -52,33 +53,34 @@ class DashboradUsuarioController {
     public static function cargas(Router $router){
         //proteger la pagina
         isAuth();
-
         $alertas = [];
+
         //guardar los registros.
-        $cargas = new Cargas();
+        $cargas = new Cargas;
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $cargas->sincronizar($_POST);
             $alertas = $cargas->validarCarga();
             if(empty($alertas)){
-                debuguear($cargas->tracking);
-                $track = Cargas::where('tracking', $cargas->tracking);
-                debuguear($track);
-                if($track){
-                    Cargas::setAlerta('danger', 'El tracking ya existe o lo estas duplicando');
+                //verificar que el cliente exista 
+                $cliente = $cargas->id_cliente;
+                $id_cliente = Cliente::where('id', $cliente);
+                if(!$id_cliente){
+                    Cargas::setAlerta('danger', 'Problemas con el cliente, por favor verifica');
                     $alertas= Cargas::getAlertas();
                 }else{
-                    $cargas->id_cliente = $_SESSION['id'];
+                    //debuguear($cargas->id);
                     $cargas->f_registro = date('y-m-d');
                     $cargas->register_by = $_SESSION['id'];
-
-                    //debuguear($cargas);
 
                     //guardar registro
                     $resultado = $cargas->guardar();
 
                     //confirmar el registro
                     if($resultado){
-                        header('Location: /dashboard');
+                        header('Location: /dashboard-u');
+                        $noti = new Email($id_cliente->correo, $id_cliente->nombre, 'Registro de carga');
+                        $noti->registroCarga();
                     }
                 }
             }
@@ -92,7 +94,8 @@ class DashboradUsuarioController {
             'description' => 'Escritorio de administracion de cuneta',
             'header' => 'system_header.php',
             'script' => 'system_scripts.php',
-            'alertas' => $alertas
+            'alertas' => $alertas,
+            'cargas' => $cargas
         ]);
     }
 

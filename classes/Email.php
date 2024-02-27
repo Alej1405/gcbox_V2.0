@@ -15,7 +15,7 @@ class Email {
         $this->nombre = $nombre;
         $this->token = $token;
     }
-
+    //Notificar la cuenta creada
     public function confirmarCuenta(){
         //configutarion
         $mail = new PHPMailer();
@@ -53,6 +53,7 @@ class Email {
         $mail->send();
     }
 
+    //Enviar mensaje de un cliente desde la web
     public function enviarConfirmacion(){
         //configutarion
         $mail = new PHPMailer();
@@ -90,6 +91,7 @@ class Email {
         $mail->send();
     }
 
+    //Instrucciones para restablecer la cuenta
     public function enviarInstrucciones(){
         //configutarion
         $mail = new PHPMailer();
@@ -127,6 +129,7 @@ class Email {
         $mail->send();
     }
 
+    //Notificar el inicio de Sesion
     public function notifyS(){
         //configutarion
         $mail = new PHPMailer();
@@ -164,6 +167,45 @@ class Email {
         $mail->send();
     }
 
+        //Notificar el embarque 
+        public function registroCarga(){
+            //configutarion
+            $mail = new PHPMailer();
+            $mail->SMTPDebug = 0;                      //Enable verbose debug output
+            $mail->isSMTP();                                            //Send using SMTP
+            $mail->Host       = $_ENV['EMAIL_HOST'];                     //Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+            $mail->Username   = $_ENV['EMAIL_USER'];                     //SMTP username
+            $mail->Password   = $_ENV['EMAIL_PASS'];                               //SMTP password
+            $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+            $mail->Port       = $_ENV['EMAIL_PORT']; 
+    
+            //destinatario
+            $mail->setFrom('gerencia@mashacorp.com', 'Gc-Box by Masha Both');
+            $mail->addAddress($this->email, $this->nombre);     //Add a recipient
+            //$mail->addAddress('lineas1405@gmail.com', 'Verificacion');                //Name is optional
+            $mail->addReplyTo('operaciones@gc-box.com', 'Operaciones-embarques');
+            //debuguear($mail);
+    
+            //Content
+            $mail->isHTML(true);                                  //Set email format to HTML
+            $mail->Subject = $this->token;
+    
+            $contenido = '<html>';
+            $contenido .= "<p><strong>Hola " . $this->nombre . "</strong> Confirmamos el registro correcto de tu carga. </p>";
+            $contenido .= "<p>Puedes verificar en tu casilla virtual los detalles.</p>";
+            $contenido .= "<p>Si tienes algun inconveniente o requieres ayuda no dudes en contactarnos.</p>";
+            $contenido .= "<p>Presiona aquí: <a href='https://wa.me/message/IAVMS2G5JDZFC1'>si necesitas mas informacion.</a></p>";
+            $contenido .= '</html>';
+    
+            $mail->Body = $contenido; 
+            //debuguear("hola...");
+    
+            $mail->CharSet = 'UTF-8';
+            $mail->send();
+        }
+
+    //Notificar el embarque 
     public function confirmarEmbarque(){
         //configutarion
         $mail = new PHPMailer();
@@ -205,6 +247,7 @@ class Email {
         $mail->send();
     }
 
+    //Notificar la creacion de una guia
     public function confirmarGuia(){
         //configutarion
         $mail = new PHPMailer();
@@ -242,6 +285,7 @@ class Email {
         $mail->send();
     }
 
+    //Notificar actulizaciones sobre el proceso de importacion
     public function notificarUpdate(){
         //configutarion
         $mail = new PHPMailer();
