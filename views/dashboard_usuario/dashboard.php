@@ -20,7 +20,7 @@
         
         <!-- Right side columns -->
         <div class="col-lg-4">
-        <a class="btn btn-light" href="/registrar-compra" role="button">Registrar compras</a>
+        <a class="btn btn-light" href="/registro" role="button">Registrar compras</a>
         </div><!-- End Right side columns -->
 
         </div>

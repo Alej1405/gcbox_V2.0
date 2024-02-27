@@ -34,6 +34,7 @@ class DashboradClientController{
         $cargas = new Cargas;
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $cargas->sincronizar($_POST);
+            $cargas->id_cliente = $_SESSION['id'];
             $alertas = $cargas->validarCarga();
             if(empty($alertas)){
                 $track = Cargas::where('tracking', $cargas->tracking);
@@ -42,7 +43,7 @@ class DashboradClientController{
                     $alertas= Cargas::getAlertas();
                 }else{
                     $cargas->tracking = trim($_POST['tracking']);
-                    $cargas->id_cliente = $_SESSION['id'];
+                    
                     $cargas->f_registro = date('y-m-d');
                     $cargas->register_by = $_SESSION['id'];
                     //debuguear($cargas);
