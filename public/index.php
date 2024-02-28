@@ -81,6 +81,8 @@ $router = new Router();
     //navegacion Usuarios
     $router->get('/registro', [DashboradUsuarioController::class, 'cargas']);
     $router->post('/registro', [DashboradUsuarioController::class, 'cargas']);
+    $router->get('/registro-actualizar', [DashboradUsuarioController::class, 'cargasActualizar']);
+    $router->post('/registro-actualizar', [DashboradUsuarioController::class, 'cargasActualizar']);
     
     //navegacion Consignatarios
     $router->get('/consignatarios', [DashboradUsuarioController::class, 'consignatarios']);

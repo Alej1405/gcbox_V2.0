@@ -29,6 +29,7 @@ class embarqueController {
     public static function crear(){
         //leer los campos desde la super global post
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            debuguear('funciona');
             header("Access-Control-Allow-Origin: *");
             header("Access-Control-Allow-Headers: content-type");
             header("Access-Control-Allow-Methods: OPTIONS,GET,PUT,POST,DELETE");

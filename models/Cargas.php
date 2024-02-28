@@ -38,7 +38,7 @@ class Cargas extends ActiveRecord{
                 $this -> origen = $args['origen'] ?? '';
                 $this -> detalle = $args['detalle'] ?? '';
             //informacion ingresada en la actualizacion de la carga
-                $this -> peso = $args['peso'] ?? '1';
+                $this -> peso = $args['peso'] ?? '0';
                 $this -> unidad = $args['unidad'] ?? '1';
                 $this -> largo = $args['largo'] ?? '1';
                 $this -> ancho = $args['ancho'] ?? '1';

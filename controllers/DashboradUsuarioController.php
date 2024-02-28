@@ -8,6 +8,7 @@ use Model\Cliente;
 use Model\Consig;
 use Model\Embarques;
 use Model\Servicios;
+use Model\Update;
 use MVC\Router;
 
 class DashboradUsuarioController {
@@ -49,14 +50,13 @@ class DashboradUsuarioController {
             ]);
         }
 
-        // cargas registrar cargas solamente desde el lado del cliente
+    // cargas registrar cargas habilitado en el cliente y en el admin
     public static function cargas(Router $router){
         //proteger la pagina
         isAuth();
         $alertas = [];
-
-        //guardar los registros.
         $cargas = new Cargas;
+        $clientes = Cliente::all();
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $cargas->sincronizar($_POST);
@@ -95,7 +95,64 @@ class DashboradUsuarioController {
             'header' => 'system_header.php',
             'script' => 'system_scripts.php',
             'alertas' => $alertas,
-            'cargas' => $cargas
+            'cargas' => $cargas,
+            'clientes' => $clientes
+        ]);
+    }
+
+    public static function cargasActualizar(Router $router){
+        //proteger la pagina
+        isAuth();
+        $alertas = [];
+        $cargas = Cargas::where('tracking', s($_GET['t']));
+        $cliente_carga = Cliente::where('id', s($_GET['c']));
+        $clientes = Cliente::all();
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $cargas->sincronizar($_POST);
+            $alertas = $cargas->validarCarga();
+            if(empty($alertas)){
+                //verificar que el cliente exista 
+                $cliente = $cargas->id_cliente;
+                $id_cliente = Cliente::where('id', $cliente);
+                if(!$id_cliente){
+                    Cargas::setAlerta('danger', 'Problemas con el cliente, por favor verifica');
+                    $alertas= Cargas::getAlertas();
+                }else{
+
+
+                    //guardar registro
+                    $resultado = $cargas->guardar();
+
+                    //Crear historial
+                    $update = new Update();
+                    $update -> estado = '18';
+                    $update -> f_update = date('y-m-d');
+                    $update -> comentario = 'Peso actualizado '.$cargas->peso;
+                    $update -> id_usuario = $_SESSION['id'];
+                    $update -> id_carga = $cargas->id;
+                    $update-> guardar();
+
+                    //confirmar el registro
+                    if($resultado){
+                        header('Location: /embarques');
+                    }
+                }
+            }
+        }
+        $alertas = Cargas::getAlertas();
+
+
+        $router->render('dashboard_usuario/registro-actualizar', [
+            'titulo' => 'Compras',
+            'index' => 'noindex, nofollow',
+            'description' => 'Escritorio de administracion de cuneta',
+            'header' => 'system_header.php',
+            'script' => 'system_scripts.php',
+            'alertas' => $alertas,
+            'cargas' => $cargas,
+            'clientes' => $clientes,
+            'cliente_carga' => $cliente_carga
         ]);
     }
 
@@ -176,12 +233,19 @@ class DashboradUsuarioController {
         $tracking = s($_GET['t']); 
         $alertas =[];
         $h = '';
+        $p = '';
 
         $cargas = Cargas::where('tracking', $tracking);
         $cliente = Cliente::where('id', $cargas->id_cliente);
         $emb = Embarques::where('id_carga', $cargas->id);
         if($emb){
             $h = 'hidden';
+        } else {
+            $v = 'hidden';
+        }
+
+        if($cargas-> peso == 0 ){
+            $p = true;
         }
 
         $router->render('dashboard_usuario/carga', [
@@ -195,7 +259,9 @@ class DashboradUsuarioController {
             'tracking' => $tracking,
             'cliente' => $cliente,
             'cargas' => $cargas,
-            'h' => $h
+            'h' => $h,
+            'v' => $v,
+            'p' => $p
         ]);
     }
 

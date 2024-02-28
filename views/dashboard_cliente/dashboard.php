@@ -34,13 +34,17 @@
                                                 <i class="ri-box-3-line"></i>
                                                 <?php echo $carga->tracking; ?>
                                             </h5>
-                                            <h6 class="card-subtitle mb-2 text-muted">Arribo UIO</h6>
+                                            <!-- <h6 class="card-subtitle mb-2 text-muted">Arribo UIO</h6> -->
                                             <p>
                                                 <?php echo $carga -> detalle; ?><br>
                                                 Tienda:
                                                 <?php echo $carga -> origen; ?><br>
                                                 Fecha de Registro:
                                                 <?php echo $carga -> f_registro; ?>
+                                                Peso:
+                                                <?php if ($carga -> peso == 0){?>
+                                                    Sin reporte en Miami
+                                                <?php }else { echo $carga -> peso; }?>
                                             </p>
                                             <a href="#" class="card-link">
                                                 <i class="ri-file-history-fill"></i>

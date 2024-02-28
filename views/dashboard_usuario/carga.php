@@ -19,21 +19,13 @@
         </ol>
     </nav>
 </div>
-    <button
-        <?php echo $h ?>
-        type="button"
-        class="btn btn-primary";
-        id="embarque"
-        style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
-        Generar
-    </button>
-
     <div class="col-xl-8 mt-2">
         <div class="card">
             <div class="card-body pt-3">
-                <!-- Bordered Tabs -->
+                <!-- opciones de folder -->
                 <ul class="nav nav-tabs nav-tabs-bordered">
 
+                    <!-- Embarque -->
                     <li class="nav-item">
                         <button
                             class="nav-link active"
@@ -44,8 +36,10 @@
                         </button>
                     </li>
 
+                    <!-- Guias -->
                     <li class="nav-item">
                         <button
+                            <?php echo $v ?>
                             class="nav-link"
                             data-bs-toggle="tab"
                             data-bs-target="#profile-settings"
@@ -54,8 +48,10 @@
                         </button>
                     </li>
 
+                    <!-- Historial -->
                     <li class="nav-item">
                         <button
+                            <?php echo $v ?>
                             class="nav-link"
                             data-bs-toggle="tab"
                             data-bs-target="#profile-settings"
@@ -64,6 +60,7 @@
                         </button>
                     </li>
 
+                    <!-- Documentos -->
                     <li class="nav-item">
                         <button
                             class="nav-link"
@@ -77,7 +74,7 @@
                 </ul>
             
             <div class="tab-content pt-2">
-                    
+
                 <!-- informacion botos Generar embarque -->
                 <div class="tab-pane fade profile-overview show active" id="profile-overview">
                     <h5 class="card-title">Generar embarque</h5>
@@ -87,6 +84,7 @@
                             <p class="small fst-italic">Al confimar el embarque el cliente aceptara el contrato menciona que debe responder el correo.</p>
                     <?php }?>
 
+                    <?php if ($h){?>
                     <h5 class="card-title">Detalles de la carga</h5>
                     <div class="row">
                         <div class="col-lg-3 col-md-4 label ">Tracking</div>
@@ -100,6 +98,14 @@
                         <div class="col-lg-3 col-md-4 label">Valor en factura</div>
                             <div class="col-lg-9 col-md-8"><?php echo $cargas->factura; ?></div>
                     </div>
+                    <?php }else{?>
+                      <h5 class="card-title">Embarcar</h5>
+                      <?php if(!$p){?>
+                        <div class="row">
+                            <form action="" method="post"></form>
+                        </div>
+                      <?php } else { echo 'Peso no registrado'; }?>
+                    <?php }; ?>
                         
 
                 </div>
@@ -118,7 +124,7 @@
                   </div>
                 </div>
                 <!-- FIN DE informacion de las guias -->
-                
+
                 <!-- Area del Historial -->
                 <div class="tab-pane fade pt-3 profile-history" id="profile-history">
                   <div class="row mb-3">
@@ -137,6 +143,7 @@
                 </div>
                 <!-- FIN DE HISTORIAL -->
 
+                <!-- agregar o descargar documentos -->
                 <div class="tab-pane fade pt-3 profile-change-password" id="profile-change-password">
                   <!-- Change Password Form -->
                   <form>
@@ -168,6 +175,7 @@
                   </form><!-- End Change Password Form -->
 
                 </div>
+                <!-- FIN DE DOCUMENTOS -->
 
             </div><!-- End Bordered Tabs -->
 

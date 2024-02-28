@@ -22,6 +22,7 @@ use Model\Cliente;
     <!-- End Page Title -->
 <hr>
 <section class="section dashboard P">
+
 <h6>Cargas en proceso o embarcadas.</h6>
         <?php if (count($cargas) === 0 ) {?>
                 <p>No hay cargas registradas o en proceso.</p>
@@ -48,16 +49,20 @@ use Model\Cliente;
                                                 <br>
                                                     Tienda: <?php echo $carga->origen ?>
                                                 <br>
-                                                    Peso: <?php echo $carga->peso ?>
+                                                Peso:
+                                                <?php if ($carga -> peso == 0){?>
+                                                    Sin reporte en Miami
+                                                <?php }else { echo $carga -> peso; }?>
                                                 <br>
                                                     Fecha de Registro: <?php echo $carga->f_registro ?>
                                             </p>
-                                            <button
-                                                type="button"
+                                            <a
+                                                href="/registro-actualizar?t=<?php echo $carga->tracking?>&c=<?php echo $carga->id_cliente;?>"
                                                 class="btn btn-light"
                                                 style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">
                                             Actualizar
-                                            </button>
+                                            </a>
+                                            
                                         </div>
                                     </div>
                                 </div>

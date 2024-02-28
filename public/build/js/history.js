@@ -56,7 +56,8 @@
             14: 'Entregado',
             15: 'Embarque sin autorizacion',
             16: 'Embarque con retraso en aduana',
-            17: 'Retraso'
+            17: 'Retraso',
+            18: 'Peso actualizado'
         }
 
         historial.forEach(history => {
