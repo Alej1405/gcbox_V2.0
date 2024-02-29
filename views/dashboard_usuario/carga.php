@@ -85,24 +85,70 @@
                     <?php }?>
 
                     <?php if ($h){?>
-                    <h5 class="card-title">Detalles de la carga</h5>
-                    <div class="row">
-                        <div class="col-lg-3 col-md-4 label ">Tracking</div>
-                            <div class="col-lg-9 col-md-8"><?php echo $cargas->tracking; ?></div>
-                        <div class="col-lg-3 col-md-4 label">Tienda u Origen</div>
-                            <div class="col-lg-9 col-md-8"><?php echo $cargas->origen ?></div>
-                        <div class="col-lg-3 col-md-4 label">Detalle</div>
-                            <div class="col-lg-9 col-md-8"><?php echo $cargas->detalle ?></div>
-                        <div class="col-lg-3 col-md-4 label">Fecha de Registro</div>
-                            <div class="col-lg-9 col-md-8"><?php echo $cargas->f_registro ?></div>
-                        <div class="col-lg-3 col-md-4 label">Valor en factura</div>
-                            <div class="col-lg-9 col-md-8"><?php echo $cargas->factura; ?></div>
-                    </div>
+                    <h5 class="card-title">Detalles generales</h5>
+                      <ul>
+                        <li><strong>Cliente:</strong> <?php echo $cliente->nombre." ".$cliente->apellido; ?></li>
+                        <li><strong>Tracking:</strong> <?php echo $cargas->tracking; ?></li>
+                        <li><strong>Tienda u Origen:</strong> <?php echo $cargas->origen ?></li>
+                        <li><strong>Detalle:</strong> <?php echo $cargas->detalle ?></li>
+                        <li><strong>Fecha de Registro:</strong> <?php echo $cargas->f_registro ?></li>
+                        <li><strong>Valor en factura:</strong> <?php echo $cargas->factura; ?></li>
+                        <li><strong>Fecha del embarque:</strong> <?php echo $cliente->nombre." ".$cliente->apellido; ?></li>
+                        <li><strong>Observacion del embarque:</strong> <?php echo $emb->comentario; ?></li>
+                      </ul>
                     <?php }else{?>
                       <h5 class="card-title">Embarcar</h5>
-                      <?php if(!$p){?>
+                      <?php if(!$p == 0){?>
                         <div class="row">
-                            <form action="" method="post"></form>
+                            <form class="row w-50" action="/api/embarque" method="post">
+                              <label class="form-label">Ingresa lo siguiente:</label>
+                                <div class="col-md-12">
+                                    <input
+                                        autocomplete="off"
+                                        readonly
+                                        class="form-control" 
+                                        type="text"
+                                        placeholder="Orden de embarque" 
+                                        id="tracking"
+                                        name="tracking"
+                                        value="<?php echo $cargas->tracking ?>"
+                                        >
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <input
+                                        autocomplete="off"
+                                        class="form-control" 
+                                        type="text"
+                                        placeholder="Orden de embarque" 
+                                        id="orden"
+                                        name="orden"
+                                        >
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <input
+                                        autocomplete="off"
+                                        class="form-control" 
+                                        type="text"
+                                        placeholder="Warehouse" 
+                                        id="wh"
+                                        name="wh"
+                                        >
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <input
+                                        autocomplete="off"
+                                        class="form-control" 
+                                        type="text"
+                                        placeholder="Observacion" 
+                                        id="comentario"
+                                        name="comentario"
+                                        >
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <input class="btn btn-primary w-100" value="Embarcar" type="submit">
+                                </div>
+
+                            </form>
                         </div>
                       <?php } else { echo 'Peso no registrado'; }?>
                     <?php }; ?>

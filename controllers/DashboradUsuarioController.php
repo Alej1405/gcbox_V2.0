@@ -233,9 +233,10 @@ class DashboradUsuarioController {
         $tracking = s($_GET['t']); 
         $alertas =[];
         $h = '';
-        $p = '';
+        $v ='';
 
         $cargas = Cargas::where('tracking', $tracking);
+        $p = $cargas->peso;
         $cliente = Cliente::where('id', $cargas->id_cliente);
         $emb = Embarques::where('id_carga', $cargas->id);
         if($emb){
@@ -244,9 +245,7 @@ class DashboradUsuarioController {
             $v = 'hidden';
         }
 
-        if($cargas-> peso == 0 ){
-            $p = true;
-        }
+        
 
         $router->render('dashboard_usuario/carga', [
             'titulo' => 'Embarques',
@@ -259,6 +258,7 @@ class DashboradUsuarioController {
             'tracking' => $tracking,
             'cliente' => $cliente,
             'cargas' => $cargas,
+            'emb' => $emb,
             'h' => $h,
             'v' => $v,
             'p' => $p

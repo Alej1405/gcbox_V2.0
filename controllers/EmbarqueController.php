@@ -29,38 +29,21 @@ class embarqueController {
     public static function crear(){
         //leer los campos desde la super global post
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-            debuguear('funciona');
-            header("Access-Control-Allow-Origin: *");
-            header("Access-Control-Allow-Headers: content-type");
-            header("Access-Control-Allow-Methods: OPTIONS,GET,PUT,POST,DELETE");
             $tracking = $_POST['tracking'];
             $carga = Cargas::where('tracking', $tracking);
-            echo json_encode($_POST);
-            exit;
-
             if(!$carga){
-                $respuesta = [
-                    'tipo' => 'alert-danger',
-                    'mensaje' => 'Inconsistencias al generar el embarque, pide ayuda.'
-                ];
-                echo json_encode($respuesta);
-                return;
+                header('location: /dashboard-u');
             }
 
-            //generando el embarque
             $embarque =  new Embarques($_POST);
+
+            //generando el embarque
             $embarque->url = md5(uniqid());
             $embarque->f_embarque = date('y-m-d');
             $embarque->id_cliente = $carga->id_cliente;
             $embarque->id_carga = $carga->id;
             $embarque->id_usuario = $_SESSION['id'];
-            $resultado = $embarque->crear();
-
-            if ($resultado){
-                $cliente = Cliente::where('id', $carga->id_cliente);
-                $noti = new Email($cliente->correo, $cliente->nombre, 'Guia Creada con Exito');
-                $noti->confirmarEmbarque();            
-            }
+            $resultado = $embarque->guardar();
 
             //guardando el update
             $update = new Update();
@@ -69,14 +52,15 @@ class embarqueController {
             $update->comentario = 'Embarque solicitado, se espera confirmacion';
             $update->id_usuario = $_SESSION['id'];
             $update->id_carga = $carga->id;
-            $update->crear();
+            $update->guardar();
 
-            $respuesta = [
-                'tipo' => 'alert-success',
-                'id' => $resultado['id'],
-                'mensaje' => 'Embarque generado'
-            ];
-            echo json_encode($respuesta);
+            if ($resultado){
+                $cliente = Cliente::where('id', $carga->id_cliente);
+                $noti = new Email($cliente->correo, $cliente->nombre, 'Embarque Solicitado');
+                $noti->confirmarEmbarque();
+                
+                header('location: /embarques');
+            }
 
         }
 
