@@ -77,7 +77,10 @@
                                     </div>
                                     <div class="col-md-12 mt-2">
                                         <select class="form-select" name="id_cliente" id="id_cliente">
-                                            <option value="1">--- seleccionar un cliente ---</option>
+                                            <option value=" ">--- seleccionar un cliente ---</option>
+                                            <?php foreach ($clientes as $cliente){ ?>
+                                                <option value="<?php echo $cliente->id ?>"><?php echo $cliente->nombre." ".$cliente->apellido?></option>
+                                            <?php }?>
                                         </select>
                                     </div>
 

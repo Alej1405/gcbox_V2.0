@@ -78,7 +78,7 @@ class DashboradUsuarioController {
 
                     //confirmar el registro
                     if($resultado){
-                        header('Location: /dashboard-u');
+                        header('Location: /registro');
                         $noti = new Email($id_cliente->correo, $id_cliente->nombre, 'Registro de carga');
                         $noti->registroCarga();
                     }
