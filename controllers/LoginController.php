@@ -255,6 +255,9 @@ class LoginController {
             $cliente->token = '';
             $cliente->guardar();
             Cliente::setAlerta('success', 'Cuenta verificada, tu regstro a finalizado');
+            $direccion = new Email($cliente->correo, $cliente->nombre, 'Casilla activada con exito');
+            $direccion->activCasilla();
+
         }
 
         $alertas = Cliente::getAlertas();

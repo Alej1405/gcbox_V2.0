@@ -37,7 +37,7 @@ class Email {
 
         //Content
         $mail->isHTML(true);                                  //Set email format to HTML
-        $mail->Subject = "Gc-Box nuevo mensaje desde la web";
+        $mail->Subject = "Gc-Box confirmacion de cuenta";
         
         $contenido = '<html>';
         $contenido .= "<p><strong>Hola " . $this->nombre . "</strong> Tu cuenta se a creado de forma correcta </p>";
@@ -322,4 +322,49 @@ class Email {
         $mail->CharSet = 'UTF-8';
         $mail->send();
     }
+
+    //Notificar la cuenta creada
+    public function activCasilla(){
+        //configutarion
+        $mail = new PHPMailer();
+        $mail->SMTPDebug = 0;                      //Enable verbose debug output
+        $mail->isSMTP();                                            //Send using SMTP
+        $mail->Host       = $_ENV['EMAIL_HOST'];                     //Set the SMTP server to send through
+        $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+        $mail->Username   = $_ENV['EMAIL_USER'];                     //SMTP username
+        $mail->Password   = $_ENV['EMAIL_PASS'];                               //SMTP password
+        $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
+        $mail->Port       = $_ENV['EMAIL_PORT']; 
+
+        //destinatario
+        $mail->setFrom('gerencia@mashacorp.com', 'Gc-Box by Masha Both');
+        $mail->addAddress($this->email, $this->nombre);     //Add a recipient
+        //$mail->addAddress('lineas1405@gmail.com', 'Verificacion');                //Name is optional
+        $mail->addReplyTo('operaciones@gc-box.com','Operaciones Gc-box');
+        //debuguear($mail);
+
+        //Content
+        $mail->isHTML(true);                                  //Set email format to HTML
+        $mail->Subject = $this->token;
+        
+        $contenido = '<html>';
+        $contenido .= "<p><strong>Tu casilla se activo correctamente</p>";
+        $contenido .= "<p>Registra esta direccion en tus tiendas</p>";
+        $contenido .= "<p>Direccion: NW 2301 107th AVE</p>";
+        $contenido .= "<p>Casilla: Ste '#'102 EC16368</p>";
+        $contenido .= "<p>Estado Ciudad: Doral, Florida</p>";
+        $contenido .= "<p>Zip Code: 33172-2177</p>";
+        $contenido .= "<p>Recuerda agregar luego de tu nombre el numero de tu casilla (<strong>Ejemplo  16368</strong>)</p>";
+        $contenido .= "<p>Haz click aqui: <a href='https://gc-box.com/confirmar?token=".$this->token."'>Confirmar Cuenta</a></p>";
+        $contenido .= "<p>Si tu no creaste esta cuenta, no hagas caso a este correo, las cuentas no verificadas se auto eliminan</p>";
+        $contenido .= '</html>';
+
+
+        $mail->Body = $contenido; 
+        //debuguear("hola...");
+
+        $mail->CharSet = 'UTF-8';
+        $mail->send();
+    }
+
 }
