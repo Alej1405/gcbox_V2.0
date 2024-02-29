@@ -355,8 +355,7 @@ class Email {
         $contenido .= "<p>Estado Ciudad: Doral, Florida</p>";
         $contenido .= "<p>Zip Code: 33172-2177</p>";
         $contenido .= "<p>Recuerda agregar luego de tu nombre el numero de tu casilla (<strong>Ejemplo  16368</strong>)</p>";
-        $contenido .= "<p>Haz click aqui: <a href='https://gc-box.com/confirmar?token=".$this->token."'>Confirmar Cuenta</a></p>";
-        $contenido .= "<p>Si tu no creaste esta cuenta, no hagas caso a este correo, las cuentas no verificadas se auto eliminan</p>";
+        $contenido .= "<p>Si requieres soporte: <a href='https://wa.me/message/IAVMS2G5JDZFC1'>Haz click aqui</a></p>";
         $contenido .= '</html>';
 
 
