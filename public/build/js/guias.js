@@ -56,23 +56,6 @@
                 const botonesDiv = document.createElement('div');
                 botonesDiv.classList.add('btn-group');
                 botonesDiv.classList.add('btn-group-sm');
-                
-                    //constuir los botones
-                    const btnGuiasActualizar = document.createElement('button');
-                    btnGuiasActualizar.classList.add('btn');
-                    btnGuiasActualizar.classList.add('btn-primary');
-                    btnGuiasActualizar.textContent = 'Actualizar';
-                    btnGuiasActualizar.dataset.idBtnGuias = 'update-btn-guias';
-
-                    const btnGuiasEliminar = document.createElement('button');
-                    btnGuiasEliminar.classList.add('btn');
-                    btnGuiasEliminar.classList.add('btn-primary');
-                    btnGuiasEliminar.textContent = 'Eliminar';
-                    btnGuiasEliminar.dataset.idBtnGuias = 'delete-btn-guias';
-
-                //mostrar botones
-                botonesDiv.appendChild(btnGuiasActualizar);
-                botonesDiv.appendChild(btnGuiasEliminar);
 
                 //mostrar contenido
                 contenedorGuias.appendChild(guiaNumero);

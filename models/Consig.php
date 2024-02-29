@@ -19,7 +19,7 @@ class Consig extends ActiveRecord{
     //constructor de clase
         public function __construct($args =[])
         {
-            $this -> id = $args['id'] ?? '';
+            $this -> id = $args['id'] ?? null;
             $this -> nombre = $args['nombre'] ?? '';
             $this -> apellido = $args['apellido'] ?? '';
             $this -> cedula = $args['cedula'] ?? '';

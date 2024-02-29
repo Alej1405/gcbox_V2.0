@@ -21,7 +21,7 @@ class Guia extends ActiveRecord{
         //construcctor de la clase
         public function __construct($args =[])
         {
-            $this -> id = $args['id']?? '';
+            $this -> id = $args['id']?? null;
             $this -> guia = $args['guia'] ?? '';
             $this -> observaciones = $args['observaciones'] ?? '';
             $this -> f_registro = $args ['f_registro'] ?? '';

@@ -157,15 +157,64 @@
                 </div>
 
                 <!-- informacion de las guias -->
-                <div class="tab-pane fade pt-3 profile-settings" id="profile-settings">
-                  <div class="text-center">
-                    <button type="button" class="btn btn-success btn-sm" id="guias">Agregar Guias</button>
-                  </div>
-                  <div class="row mb-3">
-                    <h6><strong>Guias registradas</strong></h6>
-                    <div class="col-md-8 col-lg-9">
-                      <ul class="lista-guias list-group list-group-flush" id="lista-guias">
-                      </ul>
+                <div class="container text-center tab-pane fade pt-3 profile-settings" id="profile-settings">
+                  <div class="row justify-content-start">
+                    <div class="col-5">
+                      <form class="row p-0 align-self-center" action="/api/guia" method="post">
+                        <label class="form-label">Ingresa lo siguiente:</label>
+                          <div class="col-md-12">
+                              <input
+                                  autocomplete="off"
+                                  readonly
+                                  class="form-control" 
+                                  type="text"
+                                  placeholder="Ingresa el numero de guia" 
+                                  id="tracking"
+                                  name="tracking"
+                                  value="<?php echo $cargas->tracking ?>"
+                                  >
+                          </div>
+                          <div class="col-md-12 mt-2">
+                              <input
+                                  autocomplete="off"
+                                  class="form-control" 
+                                  type="text"
+                                  placeholder="Ingresa el numero de guia" 
+                                  id="guia"
+                                  name="guia"
+                                  >
+                          </div>
+                          <div class="col-md-12 mt-2">
+                              <input
+                                  autocomplete="off"
+                                  class="form-control" 
+                                  type="text"
+                                  placeholder="observaciones" 
+                                  id="observaciones"
+                                  name="observaciones"
+                                  >
+                          </div>
+                          <div class="col-md-12 mt-2">
+                              <select class="form-select" name="id_consignatario" id="id_consignatario">
+                                <option value=" ">--- Selecciona un consignatario ---</option>
+                                <?php foreach($consi as $con){ ?>
+                                  <option value="<?php echo $con -> id ?>"><?php echo $con -> nombre." ".$con->apellido ?></option>
+                                <?php } ?>
+                              </select>
+                          </div>
+
+                          <div class="col-12 mt-2">
+                              <input class="btn btn-primary w-100" value="Embarcar" type="submit">
+                          </div>
+
+                      </form>
+                    </div>
+                    <div class="col-7">
+                      <h6><strong>Guias registradas</strong></h6>
+                      <div class="">
+                        <ul class="lista-guias list-group list-group-flush" id="lista-guias">
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>

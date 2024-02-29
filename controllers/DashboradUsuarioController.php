@@ -235,6 +235,7 @@ class DashboradUsuarioController {
         $h = '';
         $v ='';
 
+        $consi = Consig::all();
         $cargas = Cargas::where('tracking', $tracking);
         $p = $cargas->peso;
         $cliente = Cliente::where('id', $cargas->id_cliente);
@@ -259,6 +260,7 @@ class DashboradUsuarioController {
             'cliente' => $cliente,
             'cargas' => $cargas,
             'emb' => $emb,
+            'consi' => $consi,
             'h' => $h,
             'v' => $v,
             'p' => $p

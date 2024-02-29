@@ -27,24 +27,11 @@ class GuiaController {
     public static function crear(){
         //leer los campos desde la super global post
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-
-            header("Access-Control-Allow-Origin: *");
-            header("Access-Control-Allow-Headers: content-type");
-            header("Access-Control-Allow-Methods: OPTIONS,GET,PUT,POST,DELETE");
-
             //comprobar la tracking o token de la carga.
             $tracking = $_POST['tracking'];
             $carga = Cargas::where('tracking', $tracking);
-            echo json_encode($carga);
-            exit;
-
             if (!$carga->tracking === $tracking){
-                $respuesta = [
-                    'tipo' => 'alert-danger',
-                    'mensaje' => 'Inconsistencias al agregar la guia, pide ayuda.'
-                ];
-                echo json_encode($respuesta);
-                return;
+                header('location: /dashboard-u');
             }
 
             //agregamos la guia
@@ -54,12 +41,6 @@ class GuiaController {
             $guia->id_usuario = $_SESSION['id'];
             $resultado = $guia->guardar();
 
-            if ($resultado){
-                $cliente = Cliente::where('id', $carga->id_cliente);
-                $noti = new Email($cliente->correo, $cliente->nombre, 'Guia agregada.');
-                $noti->confirmarGuia();            
-            }
-
             //guardando el update
             $update = new Update();
             $update->estado = '2';
@@ -67,14 +48,14 @@ class GuiaController {
             $update->comentario = 'Guia agregada, ';
             $update->id_usuario = $_SESSION['id'];
             $update->id_carga = $carga->id;
-            $update->crear();
+            $update->guardar();
 
-            $respuesta = [
-                'tipo' => 'alert-success',
-                'id' => $resultado['id'],
-                'mensaje' => 'Guia agregada correctamente'
-            ];
-            echo json_encode($respuesta);
+            if ($resultado && $update){
+                $cliente = Cliente::where('id', $carga->id_cliente);
+                $noti = new Email($cliente->correo, $cliente->nombre, 'Guia agregada.');
+                $noti->confirmarGuia();
+                header("location: /embarques-carga?t=$tracking");
+            }
 
         }
 
