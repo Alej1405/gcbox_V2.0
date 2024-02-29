@@ -7,6 +7,7 @@ use Model\Cargas;
 use Model\Cliente;
 use Model\Embarques;
 use Model\Update;
+use MVC\Router;
 
 class embarqueController {
 
@@ -26,7 +27,7 @@ class embarqueController {
 
     }
 
-    public static function crear(){
+    public static function crear(Router $router){
         //leer los campos desde la super global post
         if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             $tracking = $_POST['tracking'];
