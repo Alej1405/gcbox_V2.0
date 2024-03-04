@@ -75,13 +75,13 @@ class DashboradUsuarioController {
 
                     //guardar registro
                     $resultado = $cargas->guardar();
-                    $noti = new Email($id_cliente->correo, $id_cliente->nombre, 'Registro de carga');
-                    $noti->registroCarga();
 
                     //confirmar el registro
                     if($resultado){
+                        $token = $cargas->peso." / ".$cargas->detalle." / ".$cargas->tracking;
+                        $noti = new Email($id_cliente->correo, $id_cliente->nombre, $token);
+                        $noti->registroCarga();
                         header('Location: /registro');
-                        
                     }
                 }
             }

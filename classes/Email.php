@@ -189,11 +189,14 @@ class Email {
     
             //Content
             $mail->isHTML(true);                                  //Set email format to HTML
-            $mail->Subject = $this->token;
+            $mail->Subject = 'Arribo de carga Miami';
     
             $contenido = '<html>';
             $contenido .= "<p><strong>Hola " . $this->nombre . "</strong> Confirmamos el registro correcto de tu carga. </p>";
+            $contenido .= "<p>Con el siguiente detalle:" . $this->token . " Confirmamos el registro correcto de tu carga. </p>";
             $contenido .= "<p>Puedes verificar en tu casilla virtual los detalles.</p>";
+            $contenido .= "<a href='https://gc-box.com/login'>Ingresar al casillero.</a>";
+            $contenido .= "<br>";
             $contenido .= "<p>Si tienes algun inconveniente o requieres ayuda no dudes en contactarnos.</p>";
             $contenido .= "<p>Presiona aquí: <a href='https://wa.me/message/IAVMS2G5JDZFC1'>si necesitas mas informacion.</a></p>";
             $contenido .= '</html>';
