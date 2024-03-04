@@ -78,7 +78,7 @@ class DashboradUsuarioController {
 
                     //confirmar el registro
                     if($resultado){
-                        $token = $cargas->peso." / ".$cargas->detalle." / ".$cargas->tracking;
+                        $token = "Peso:". $cargas->peso." / Detalle: ".$cargas->detalle." / Tracking: ".$cargas->tracking;
                         $noti = new Email($id_cliente->correo, $id_cliente->nombre, $token);
                         $noti->registroCarga();
                         header('Location: /registro');
