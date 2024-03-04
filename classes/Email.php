@@ -173,12 +173,12 @@ class Email {
             $mail = new PHPMailer();
             $mail->SMTPDebug = 0;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'mail.mashacorp.com';                     //Set the SMTP server to send through
+            $mail->Host       = $_ENV['EMAIL_HOST'];                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = 'gerencia@mashacorp.com';                     //SMTP username
-            $mail->Password   = 'masha1405';                               //SMTP password
+            $mail->Username   = $_ENV['EMAIL_USER'];                     //SMTP username
+            $mail->Password   = $_ENV['EMAIL_PASS'];                               //SMTP password
             $mail->SMTPSecure = 'ssl';            //Enable implicit TLS encryption
-            $mail->Port       = 465; 
+            $mail->Port       = $_ENV['EMAIL_PORT'];
     
             //destinatario
             $mail->setFrom('gerencia@mashacorp.com', 'Gc-Box by Masha Both');
