@@ -173,7 +173,7 @@ class Email {
             $mail = new PHPMailer();
             $mail->SMTPDebug = 0;                      //Enable verbose debug output
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = $_ENV['EMAIL_HOST'];                     //Set the SMTP server to send through
+            $mail->Host       = 'mail.mashacorp.com';                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
             $mail->Username   = $_ENV['EMAIL_USER'];                     //SMTP username
             $mail->Password   = $_ENV['EMAIL_PASS'];                               //SMTP password
