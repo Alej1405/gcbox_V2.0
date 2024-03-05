@@ -60,6 +60,7 @@ class HistorialController{
                 'mensaje' => 'Embarque generado'
             ];
 
+            header("Content-Type: application/json");
             echo json_encode($respuesta);
         }
         //verificar que la carga exista en la base de da
