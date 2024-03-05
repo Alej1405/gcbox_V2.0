@@ -98,12 +98,11 @@ $router = new Router();
 
     //consultar los embarques
     $router->get('/embarques', [DashboradUsuarioController::class, 'consultarEmbarques']);
-    
+    $router->get('/crear/embarque', [DashboradUsuarioController::class, 'crearEmbarque']);
+    $router->post('/crear/embarque', [DashboradUsuarioController::class, 'crearEmbarque']);
 
     //API para los embarques
     $router->get('/api/embarque', [EmbarqueController::class, 'index']);
-    $router->get('/crear/embarque', [EmbarqueController::class, 'crear']);
-    $router->post('/crear/embarque', [EmbarqueController::class, 'crear']);
     $router->post('/api/embarque/actualizar', [EmbarqueController::class, 'actualizar']);
     $router->post('/api/embarque/eliminar', [EmbarqueController::class, 'eliminar']);
     
