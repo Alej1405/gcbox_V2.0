@@ -19,9 +19,9 @@
             </a>
         </li><!-- End Components Nav -->
         <li class="nav-item">
-            <a class="nav-link <?php echo ($titulo === 'Embarques') ? '' : 'collapsed'; ?>" href="/embarques">
+            <a class="nav-link <?php echo ($titulo === 'Procesos') ? '' : 'collapsed'; ?>" href="/embarques">
             <i class="bi bi-airplane-fill"></i>
-            <span>Embarcar</span>
+            <span>Procesos</span>
             </a>
         </li><!-- End Components Nav -->
 

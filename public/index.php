@@ -102,7 +102,8 @@ $router = new Router();
 
     //API para los embarques
     $router->get('/api/embarque', [EmbarqueController::class, 'index']);
-    $router->post('/api/embarque', [EmbarqueController::class, 'crear']);
+    $router->get('/crear/embarque', [EmbarqueController::class, 'crear']);
+    $router->post('/crear/embarque', [EmbarqueController::class, 'crear']);
     $router->post('/api/embarque/actualizar', [EmbarqueController::class, 'actualizar']);
     $router->post('/api/embarque/eliminar', [EmbarqueController::class, 'eliminar']);
     

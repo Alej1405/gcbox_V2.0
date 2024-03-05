@@ -21,7 +21,7 @@ class DashboradUsuarioController {
     
             $alertas = [];
             $router->render('dashboard_usuario/embarques', [
-                'titulo' => 'Embarques',
+                'titulo' => 'Procesos',
                 'index' => 'noindex, nofollow',
                 'description' => 'Escritorio de administracion de cuneta',
                 'header' => 'system_header.php',
@@ -90,7 +90,7 @@ class DashboradUsuarioController {
 
 
         $router->render('dashboard_usuario/registro', [
-            'titulo' => 'Compras',
+            'titulo' => 'Procesos',
             'index' => 'noindex, nofollow',
             'description' => 'Escritorio de administracion de cuneta',
             'header' => 'system_header.php',
@@ -145,7 +145,7 @@ class DashboradUsuarioController {
 
 
         $router->render('dashboard_usuario/registro-actualizar', [
-            'titulo' => 'Compras',
+            'titulo' => 'Procesos',
             'index' => 'noindex, nofollow',
             'description' => 'Escritorio de administracion de cuneta',
             'header' => 'system_header.php',
@@ -250,7 +250,7 @@ class DashboradUsuarioController {
         
 
         $router->render('dashboard_usuario/carga', [
-            'titulo' => 'Embarques',
+            'titulo' => 'Procesos',
             'titulo2' => 'Carga',
             'index' => 'noindex, nofollow',
             'description' => 'Escritorio de administracion de cuneta',

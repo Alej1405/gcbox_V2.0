@@ -100,55 +100,7 @@
                       <h5 class="card-title">Embarcar</h5>
                       <?php if(!$p == 0){?>
                         <div class="row">
-                            <form class="row w-50" action="/api/embarque" method="post">
-                              <label class="form-label">Ingresa lo siguiente:</label>
-                                <div class="col-md-12">
-                                    <input
-                                        autocomplete="off"
-                                        readonly
-                                        class="form-control" 
-                                        type="text"
-                                        placeholder="Orden de embarque" 
-                                        id="tracking"
-                                        name="tracking"
-                                        value="<?php echo $cargas->tracking ?>"
-                                        >
-                                </div>
-                                <div class="col-md-12 mt-2">
-                                    <input
-                                        autocomplete="off"
-                                        class="form-control" 
-                                        type="text"
-                                        placeholder="Orden de embarque" 
-                                        id="orden"
-                                        name="orden"
-                                        >
-                                </div>
-                                <div class="col-md-12 mt-2">
-                                    <input
-                                        autocomplete="off"
-                                        class="form-control" 
-                                        type="text"
-                                        placeholder="Warehouse" 
-                                        id="wh"
-                                        name="wh"
-                                        >
-                                </div>
-                                <div class="col-md-12 mt-2">
-                                    <input
-                                        autocomplete="off"
-                                        class="form-control" 
-                                        type="text"
-                                        placeholder="Observacion" 
-                                        id="comentario"
-                                        name="comentario"
-                                        >
-                                </div>
-                                <div class="col-12 mt-2">
-                                    <input class="btn btn-primary w-100" value="Embarcar" type="submit">
-                                </div>
-
-                            </form>
+                            <a href="/crear/embarque?t=<?php echo $cargas->tracking?>">embarcar</a>
                         </div>
                       <?php } else { echo 'Peso no registrado'; }?>
                     <?php }; ?>

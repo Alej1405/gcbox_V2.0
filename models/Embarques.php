@@ -33,5 +33,18 @@ class Embarques extends ActiveRecord{
         $this -> id_usuario = $args ['id_usuario'] ?? '';
     }
 
-    
+    //validar embarques de forma correcta
+           //validar las cargas
+        public function validarEmbarque(){
+            if(!$this->orden){
+                self::$alertas['warning'] [] = "Ingresa el numero de orden";
+            }
+            if(!$this->wh){
+                self::$alertas['warning'] [] = "Registra el Wh es obligatorio";
+            }
+            if(!$this->comentario){
+                self::$alertas['warning'] [] = "Describir el embarque ayuda a la gestion";
+            }
+            return self::$alertas;
+        }
 }
