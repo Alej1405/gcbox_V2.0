@@ -9,7 +9,7 @@ use Model\Embarques;
 use Model\Update;
 use MVC\Router;
 
-class EmbarqueController {
+class embarqueController {
 
     public static function index(){
         //consultar que la carga exista
