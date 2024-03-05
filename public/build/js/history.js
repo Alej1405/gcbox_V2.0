@@ -205,7 +205,7 @@
 
         //try catch para ver los resultados de la peticion sin detener el servidor
         try{
-            const url = 'http://localhost:3000/api/historial';
+            const url = 'https://gc-box.com/api/historial';
             const repuesta = await fetch(url, {
                 method: 'POST',
                 body: datos 
