@@ -101,6 +101,9 @@ $router = new Router();
     $router->get('/crear/embarque', [DashboradUsuarioController::class, 'crearEmbarque']);
     $router->post('/crear/embarque', [DashboradUsuarioController::class, 'crearEmbarque']);
 
+    //enlaces de documentos 
+    $router->post('/cargas-doc', [DashboradUsuarioController::class, 'agregar']);
+
     //API para los embarques
     $router->get('/api/embarque', [EmbarqueController::class, 'index']);
     $router->post('/api/embarque/actualizar', [EmbarqueController::class, 'actualizar']);

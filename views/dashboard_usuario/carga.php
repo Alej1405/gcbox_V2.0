@@ -100,7 +100,7 @@
                       <h5 class="card-title">Embarcar</h5>
                       <?php if(!$p == 0){?>
                         <div class="row">
-                            <a href="/crear/embarque?t=<?php echo $cargas->tracking?>">embarcar</a>
+                            <a class="btn btn-primary" href="/crear/embarque?t=<?php echo $cargas->tracking?>">embarcar</a>
                         </div>
                       <?php } else { echo 'Peso no registrado'; }?>
                     <?php }; ?>
@@ -193,31 +193,47 @@
                 <!-- agregar o descargar documentos -->
                 <div class="tab-pane fade pt-3 profile-change-password" id="profile-change-password">
                   <!-- Change Password Form -->
-                  <form>
-
-                    <div class="row mb-3">
-                      <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                  <form  action="/cargas-doc" method="post" enctype="multipart/form-data">
+                  <?php 
+                                    include_once __DIR__ . "/../templates/alertas.php";
+                                ?>
+                  <div class="row mb-3">
+                      <label for="doc" class="col-md-4 col-lg-3 col-form-label">Tracking</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="password" type="password" class="form-control" id="currentPassword">
+                        <input name="tracking" readonly type="text" class="form-control" id="tracking" value="<?php echo $tracking ?>">
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+                      <label for="Tipo de documento" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="newpassword" type="password" class="form-control" id="newPassword">
+                        <select class="form-select" name="tipo" id="tipo">
+                          <option value="">--- Selecciona que documento es---</option>
+                          <option value="1">Factura de Compra</option>
+                          <option value="2">Factura de Servicios</option>
+                          <option value="3">Liquidacion Aduana</option>
+                          <option value="4"> D A S </option>
+                          <option value="5">Otros </option>
+                        </select>
                       </div>
                     </div>
 
                     <div class="row mb-3">
-                      <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+                      <label for="doc" class="col-md-4 col-lg-3 col-form-label">Documento</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+                        <input name="doc" type="file" class="form-control" id="doc">
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label for="detalle" class="col-md-4 col-lg-3 col-form-label">Observacion</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="detalle" type="password" class="form-control" id="detalle">
                       </div>
                     </div>
 
                     <div class="text-center">
-                      <button type="submit" class="btn btn-primary">Change Password</button>
+                      <button type="submit" class="btn btn-primary">Guardar Documento</button>
                     </div>
                   </form><!-- End Change Password Form -->
 

@@ -6,6 +6,7 @@ use Classes\Email;
 use Model\Cargas;
 use Model\Cliente;
 use Model\Consig;
+use Model\Docs;
 use Model\Embarques;
 use Model\Servicios;
 use Model\Update;
@@ -324,6 +325,33 @@ class DashboradUsuarioController {
             'cargas' => $cargas
         ]);
 
+    }
+
+    //documentos 
+    public static function agregar(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            //validar la carga
+            $tracking = s($_POST['tracking']) ?? null;
+            if ($tracking === null){
+                header('location: /salir');
+            } 
+            
+            //validar la carga
+            $carga = Cargas::where('tracking', $tracking);
+            if(!$carga){
+                header('location: /salir');
+            }
+
+            $documento =  new Docs($_POST);
+            $alertas = $documento->validarDoc();
+            if(empty($alertas)){
+                debuguear('aqui estasm');
+            }
+
+
+
+        }
+        $alertas = Docs::getAlertas();
     }
 
 }
