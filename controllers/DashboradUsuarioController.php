@@ -344,14 +344,45 @@ class DashboradUsuarioController {
 
             $documento =  new Docs($_POST);
             $alertas = $documento->validarDoc();
+            $archivo = $_FILES['doc'];
+            
             if(empty($alertas)){
-                debuguear('aqui estasm');
+                if (!$archivo['name']){
+                    echo '<script language="javascript">alert("Verifica el documento que ingresaste");window.location.href="/embarques"</script>';
+                }
+                //crear carpeta de archivos
+                $carpetaDocs = "../docs/";
+
+                if(!is_dir($carpetaDocs)){
+                    mkdir($carpetaDocs);
+                }
+
+                //generar nombre unico del archivo
+                $name_doc = md5(uniqid(rand().true)).".pdf";
+
+                //subir el archivo al servidor
+                move_uploaded_file($archivo['tmp_name'], $carpetaDocs.$name_doc);
+
+                //asignar datos a la tabla
+                $documento->doc = $name_doc;
+                $documento->f_registro = date('y-m-d');
+                $documento->id_usuario = $_SESSION['id'];
+                $documento->id_carga = $carga->id;
+                $resultado = $documento->guardar();
+
+                if($resultado){
+                    header("Location: /embarques-carga?t={$tracking}");
+                }
+
+            }else{
+                echo '<script language="javascript">alert("Informacion mal ingresada")</script>';
+                header("Location: /embarque");
             }
 
 
 
         }
-        $alertas = Docs::getAlertas();
+
     }
 
 }

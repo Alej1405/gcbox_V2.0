@@ -195,8 +195,8 @@
                   <!-- Change Password Form -->
                   <form  action="/cargas-doc" method="post" enctype="multipart/form-data">
                   <?php 
-                                    include_once __DIR__ . "/../templates/alertas.php";
-                                ?>
+                      include_once __DIR__ . "/../templates/alertas.php";
+                  ?>
                   <div class="row mb-3">
                       <label for="doc" class="col-md-4 col-lg-3 col-form-label">Tracking</label>
                       <div class="col-md-8 col-lg-9">
@@ -205,7 +205,7 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="Tipo de documento" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+                      <label for="Tipo de documento" class="col-md-4 col-lg-3 col-form-label">Tipo de Documento</label>
                       <div class="col-md-8 col-lg-9">
                         <select class="form-select" name="tipo" id="tipo">
                           <option value="">--- Selecciona que documento es---</option>
@@ -228,7 +228,7 @@
                     <div class="row mb-3">
                       <label for="detalle" class="col-md-4 col-lg-3 col-form-label">Observacion</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="detalle" type="password" class="form-control" id="detalle">
+                        <input name="detalle" type="text" class="form-control" id="detalle">
                       </div>
                     </div>
 

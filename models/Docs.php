@@ -5,13 +5,14 @@ namespace Model;
 class Docs extends ActiveRecord{
 
     protected static $tabla = 'documentos_GR';
-    protected static $columnasDB = ['id', 'doc', 'tipo', 'detalle', 'id_usuario', 'id_carga'];
+    protected static $columnasDB = ['id', 'doc', 'tipo', 'detalle', 'f_registro', 'id_usuario', 'id_carga'];
 
     //atributos del modelo
     public $id;
     public $doc;
     public $tipo;
     public $detalle;
+    public $f_registro;
     public $id_usuario;
     public $id_carga;
 
@@ -22,6 +23,7 @@ class Docs extends ActiveRecord{
         $this -> doc = $args['doc'] ?? '';
         $this -> tipo = $args['tipo'] ?? '';
         $this -> detalle = $args['detalle'] ?? '';
+        $this -> f_registro = $args['f_registro'] ?? '';
         $this -> id_usuario = $args['id_usuario'] ?? '';
         $this -> id_carga = $args['id_carga'] ?? '';
         
