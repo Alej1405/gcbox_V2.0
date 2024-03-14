@@ -96,7 +96,7 @@ class ActiveRecord {
         $query .= " ') ";
         
         // Resultado de la consulta
-        debuguear($query);
+        // debuguear($query);
         $resultado = self::$db->query($query);
         return [
             'resultado' =>  $resultado,
