@@ -213,7 +213,8 @@
                           <option value="2">Factura de Servicios</option>
                           <option value="3">Liquidacion Aduana</option>
                           <option value="4"> D A S </option>
-                          <option value="5">Otros </option>
+                          <option value="5">Guia provincia </option>
+                          <option value="6">Otros</option>
                         </select>
                       </div>
                     </div>
@@ -221,7 +222,7 @@
                     <div class="row mb-3">
                       <label for="doc" class="col-md-4 col-lg-3 col-form-label">Documento</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="doc" type="file" class="form-control" id="doc">
+                        <input name="doc" type="file" class="form-control" id="doc" accept="application/pdf">
                       </div>
                     </div>
 
