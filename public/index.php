@@ -26,7 +26,7 @@ $router = new Router();
     $router->get('/servicios/bodega-internacional', [PageController::class, 'bodega']);
     $router->get('/servicios/encomiendas', [PageController::class, 'encomiendas']);
     $router->get('/politicas-del-servicio-y-privacidad', [PageController::class, 'politicas']);
-    $router->get('/sitemap', [PageController::class, 'sitemap']);
+    $router->get('/sitemap.xml', [PageController::class, 'sitemap']);
 //fin de la navegacion de las paginas.
 //inicio de backent
     //login y manejo de cuentas

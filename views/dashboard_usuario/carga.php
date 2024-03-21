@@ -194,10 +194,10 @@
                 <div class="tab-pane fade pt-3 profile-change-password" id="profile-change-password">
                   <!-- Change Password Form -->
                   <form  action="/cargas-doc" method="post" enctype="multipart/form-data">
-                  <?php 
-                      include_once __DIR__ . "/../templates/alertas.php";
-                  ?>
-                  <div class="row mb-3">
+                    <?php 
+                        include_once __DIR__ . "/../templates/alertas.php";
+                    ?>
+                    <div class="row mb-3">
                       <label for="doc" class="col-md-4 col-lg-3 col-form-label">Tracking</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="tracking" readonly type="text" class="form-control" id="tracking" value="<?php echo $tracking ?>">
@@ -237,6 +237,14 @@
                       <button type="submit" class="btn btn-primary">Guardar Documento</button>
                     </div>
                   </form><!-- End Change Password Form -->
+                  <div>
+                    <ul>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                      <li></li>
+                    </ul>
+                  </div>
 
                 </div>
                 <!-- FIN DE DOCUMENTOS -->
