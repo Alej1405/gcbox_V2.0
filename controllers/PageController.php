@@ -297,6 +297,6 @@ class PageController {
     }
     public static function sitemap(Router $router){
         
-        $router->render('/sitemap');
+        $router->render('pages/sitemap');
     }
 }
