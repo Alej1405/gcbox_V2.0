@@ -348,6 +348,8 @@ class LoginController {
                         $email = new Email($_SESSION['correo'], $_SESSION['nombre'], '');
                         $email -> notifyS();
 
+                        MensajeEmbarque('+593963539438', 'tbas12362');
+
                         header('Location: /dashboard-u');
 
                     }else{

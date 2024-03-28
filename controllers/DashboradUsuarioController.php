@@ -14,9 +14,8 @@ use MVC\Router;
 
 class DashboradUsuarioController {
         public static function consultarEmbarques(Router $router){
-            //proteger la pagina
+        //proteger la pagina
             isAuth();
-            
             //ver todas las cargas en proceso
             $cargas = Cargas::all();
     
