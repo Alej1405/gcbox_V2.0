@@ -13,7 +13,7 @@
     <li class="nav-heading">Cargas y Embarques</li>
 
         <li class="nav-item">
-            <a class="nav-link <?php echo ($titulo === 'Compras') ? '' : 'collapsed'; ?>" href="/registro">
+            <a class="nav-link <?php echo ($titulo === 'Agregar') ? '' : 'collapsed'; ?>" href="/registro">
             <i class="bi bi-box-arrow-in-down"></i>
             <span>Agregar</span>
             </a>

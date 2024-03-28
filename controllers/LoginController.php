@@ -100,6 +100,10 @@ class LoginController {
                             $email = new Email($cliente->correo, $cliente->nombre, $cliente->token);
                             $email->confirmarCuenta();
                         if($resultado){
+                            $cel = $cliente->celular;
+                            $cel = substr($cel, 1);
+                            $celular = '+593'.$cel;
+                            Mensaje($celular);
                             header('location: /cuenta-creada');
                         }
                     }
@@ -347,8 +351,7 @@ class LoginController {
                         $_SESSION['login'] = true;
                         $email = new Email($_SESSION['correo'], $_SESSION['nombre'], '');
                         $email -> notifyS();
-
-                        MensajeEmbarque('+593963539438', 'tbas12362');
+                        
 
                         header('Location: /dashboard-u');
 

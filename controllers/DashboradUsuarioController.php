@@ -81,6 +81,14 @@ class DashboradUsuarioController {
                         $token = "Peso:". $cargas->peso." / Detalle: ".$cargas->detalle." / Tracking: ".$cargas->tracking;
                         $noti = new Email($id_cliente->correo, $id_cliente->nombre, $token);
                         $noti->registroCarga();
+                        //datos notificacion por whatsapp
+                            $cel = $id_cliente->celular;
+                            $cel = substr($cel, 1);
+                            $celular = '+593'.$cel;
+                            $tracking = $cargas->tracking;
+                            $detalle = $cargas->detalle;
+                            MensajeCarga($tracking, $detalle, $celular );
+
                         header('Location: /registro');
                     }
                 }
@@ -90,7 +98,7 @@ class DashboradUsuarioController {
 
 
         $router->render('dashboard_usuario/registro', [
-            'titulo' => 'Procesos',
+            'titulo' => 'Agregar',
             'index' => 'noindex, nofollow',
             'description' => 'Escritorio de administracion de cuneta',
             'header' => 'system_header.php',
@@ -120,8 +128,7 @@ class DashboradUsuarioController {
                     Cargas::setAlerta('danger', 'Problemas con el cliente, por favor verifica');
                     $alertas= Cargas::getAlertas();
                 }else{
-
-
+                    
                     //guardar registro
                     $resultado = $cargas->guardar();
 
@@ -136,6 +143,17 @@ class DashboradUsuarioController {
 
                     //confirmar el registro
                     if($resultado){
+                        //datos del cliente
+                        $nombre = $id_cliente->nombre." ".$id_cliente->apellido;
+                        $cel = $id_cliente->celular;
+                            $cel = substr($cel, 1);
+                            $celular = '+593'.$cel;
+                        //datos de la carga
+                        $peso = $cargas->peso." ".'libras';
+                        $tracking = $cargas->tracking;
+                        $detalle = $cargas->detalle;
+                        MensajeArribo($nombre, $peso, $tracking, $detalle, $celular);
+                        
                         header('Location: /embarques');
                     }
                 }
@@ -305,6 +323,12 @@ class DashboradUsuarioController {
                     $cliente = Cliente::where('id', $carga->id_cliente);
                     $noti = new Email($cliente->correo, $cliente->nombre, 'Embarque Solicitado');
                     $noti->confirmarEmbarque();
+
+                    $cel = $cliente->celular;
+                            $cel = substr($cel, 1);
+                            $celular = '+593'.$cel;
+                    $tracking = $carga->tracking;
+                    MensajeEmbarque($celular, $tracking);
                     
                     header("location: /embarques-carga?t=$carga->tracking");
                 }
@@ -317,7 +341,7 @@ class DashboradUsuarioController {
         $router->render('dashboard_usuario/embarque', [
             'titulo' => 'Procesos',
             'index' => 'noindex, nofollow',
-            'description' => 'Escritorio de administracion de cuneta',
+            'description' => 'Escritorio de administracion de cuenta',
             'header' => 'system_header.php',
             'script' => 'system_scripts.php',
             'alertas' => $alertas,
