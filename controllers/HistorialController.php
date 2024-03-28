@@ -53,12 +53,6 @@ class HistorialController{
                 $cliente = Cliente::where('id', $carga->id_cliente);
                 $noti = new Email($cliente->correo, $cliente->nombre, $novedaes);
                 $noti->notificarUpdate();
-                $cel = $cliente->celular;
-                            $cel = substr($cel, 1);
-                            $celular = '+593'.$cel;
-                $actual = estados($update->estado);
-                $detalle = $update->comentario;
-                MensajeUpdate($actual, $detalle, $celular);
             }
             $respuesta = [
                 'tipo' => 'alert-success',
@@ -68,6 +62,13 @@ class HistorialController{
 
             header("Content-Type: application/json");
             echo json_encode($respuesta);
+
+            $cel = $cliente->celular;
+            $cel = substr($cel, 1);
+            $celular = '+593'.$cel;
+            $actual = estados($update->estado);
+            $detalle = $update->comentario;
+            MensajeUpdate($actual, $detalle, $celular);
         }
         //verificar que la carga exista en la base de da
     }
